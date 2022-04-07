@@ -1,0 +1,28 @@
+{
+    "name": "ampeco/omnipay-paymob",
+    "description": "Omnipay plugin for https://accept.paymob.com/",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ampeco\\OmnipayPayMob\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alexander Alexiev",
+            "email": "alexander.alexiev@ampeco.com"
+        },
+        {
+            "name": "Borislav Borisov",
+            "email": "borislav.borisov@ampeco.com"
+        },
+        {
+            "name": "Nikolay Mikov",
+            "email": "nikolay.mikov@ampeco.com"
+        }
+    ],
+    "require": {
+        "omnipay/common": "^3"
+    }
+}
