@@ -8,14 +8,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     use CommonParameters;
 
-    const ENDPOINT_TESTING = 'https://api.sandbox.PayMob.com/v2';
-    const ENDPOINT_PRODUCTION = 'https://api.PayMob.com/v2';
+    const ENDPOINT_PRODUCTION = 'https://accept.paymob.com/api';
 
     abstract public function getEndpoint();
 
     public function getBaseUrl()
     {
-        return $this->getTestMode() ? static::ENDPOINT_TESTING : static::ENDPOINT_PRODUCTION;
+        return static::ENDPOINT_PRODUCTION;
     }
 
     public function getHeaders(): array
@@ -36,8 +35,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $headers = array_merge($this->getHeaders(), [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'Authorization' => 'Basic ' . base64_encode($this->getServerKey() . ':'),
         ]);
+
+        $data['auth_token'] = $this->getAuthToken();
 
         $httpResponse = $this->httpClient->request(
             $this->getHttpMethod(),
@@ -62,5 +62,25 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected function getResponseClass()
     {
         return Response::class;
+    }
+
+    public function getAuthToken()
+    {
+        $response = $this->httpClient->request('POST',
+            $this->getBaseUrl() . '/auth/tokens',
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'api_key' => $this->getApiKey(),
+            ])
+        );
+
+        $decodedResponse = json_decode($response->getBody()->getContents(), true);
+
+        if ($response->getStatusCode() >= 400) {
+            throw new \Exception($decodedResponse['detail']);
+        }
+
+        info('TOKEN:'. $decodedResponse['token']);
+        return $decodedResponse['token'];
     }
 }

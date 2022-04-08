@@ -4,23 +4,43 @@ namespace Ampeco\OmnipayPayMob;
 
 trait CommonParameters
 {
-    public function getServerKey()
+    public function getApiKey()
     {
-        return $this->getParameter('serverKey');
+        return $this->getParameter('apiKey');
     }
 
-    public function setServerKey($value)
+    public function setApiKey($value)
     {
-        return $this->setParameter('serverKey', $value);
+        return $this->setParameter('apiKey', $value);
     }
 
-    public function getUserId()
+    public function getPaymentIntegrationId()
     {
-        return $this->getParameter('userId');
+        return $this->getParameter('paymentIntegrationId');
     }
 
-    public function setUserId($value)
+    public function setPaymentIntegrationId($value)
     {
-        return $this->setParameter('userId', $value);
+        return $this->setParameter('paymentIntegrationId', $value);
+    }
+
+    public function getAuthIntegrationId()
+    {
+        return $this->getParameter('authIntegrationId');
+    }
+
+    public function setAuthIntegrationId($value)
+    {
+        return $this->setParameter('authIntegrationId', $value);
+    }
+
+    public function getCardIframeId()
+    {
+        return $this->getParameter('cardIframeId');
+    }
+
+    public function setCardIframeId($value)
+    {
+        return $this->setParameter('cardIframeId', $value);
     }
 }

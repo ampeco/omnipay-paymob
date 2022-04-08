@@ -31,12 +31,12 @@ class Gateway extends AbstractGateway
 
     public function getCreateCardAmount()
     {
-        return 1000;
+        return 1;
     }
 
     public function getCreateCardCurrency()
     {
-        return 'IDR';
+        return 'EGP';
     }
 
     public function createCard(array $options = []): AbstractRequest
