@@ -4,6 +4,16 @@ namespace Ampeco\OmnipayPayMob;
 
 trait CommonParameters
 {
+    public function getEmail()
+    {
+        return $this->getParameter('email');
+    }
+
+    public function setEmail($value)
+    {
+        return $this->setParameter('email', $value);
+    }
+
     public function getApiKey()
     {
         return $this->getParameter('apiKey');

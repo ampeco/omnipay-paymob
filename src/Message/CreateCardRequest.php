@@ -81,7 +81,7 @@ class CreateCardRequest extends AbstractRequest
             'order_id' => $orderId,
             'billing_data' => [
                 'apartment'=> 'NA',
-                'email'=> 'claudette09@exa.com',
+                'email'=> $this->getEmail(),
                 'floor'=> 'NA',
                 'first_name'=> 'Clifford',
                 'street'=> 'NA',
