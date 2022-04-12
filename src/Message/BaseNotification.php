@@ -9,22 +9,20 @@ class BaseNotification implements NotificationInterface
     const STATUS_SUCCESS = 200;
 
     protected $data;
-    protected $serverKey;
 
-    public function __construct($data, $serverKey)
+    public function __construct($data)
     {
         $this->data = $data;
-        $this->serverKey = $serverKey;
     }
 
     public function getTransactionStatus(): int
     {
-        return @$this->data['status_code'];
+//        return @$this->data['status_code'];
     }
 
     public function getMessage()
     {
-        return $this->getTransactionStatus();
+//        return $this->getTransactionStatus();
     }
 
     public function getData()
@@ -39,6 +37,7 @@ class BaseNotification implements NotificationInterface
 
     public function isSuccessful(): bool
     {
-        return $this->getTransactionStatus() === self::STATUS_SUCCESS;
+//        return $this->getTransactionStatus() === self::STATUS_SUCCESS;
+        return  true;
     }
 }

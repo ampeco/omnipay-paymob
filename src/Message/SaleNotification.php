@@ -35,14 +35,14 @@ class SaleNotification extends BaseNotification
 
     public function hasValidSignature(): bool
     {
-        $input = implode([
-            $this->data['order_id'],
-            $this->data['status_code'],
-            $this->data['gross_amount'],
-            $this->serverKey,
-        ]);
-
-        return openssl_digest($input, 'sha512') === $this->data['signature_key'];
+//        $input = implode([
+//            $this->data['order_id'],
+//            $this->data['status_code'],
+//            $this->data['gross_amount'],
+//            $this->serverKey,
+//        ]);
+//
+//        return openssl_digest($input, 'sha512') === $this->data['signature_key'];
     }
 
     public function getCode(): ?string
@@ -57,7 +57,7 @@ class SaleNotification extends BaseNotification
 
     public function getToken(): ?string
     {
-        return @$this->data['saved_token_id'];
+        return @$this->data['obj']['token'];
     }
 
     public function getCardLastFour(): string
@@ -87,6 +87,6 @@ class SaleNotification extends BaseNotification
 
     public function getExpireDate(): string
     {
-        return $this->data['saved_token_id_expired_at'];
+//        return $this->data['saved_token_id_expired_at'];
     }
 }

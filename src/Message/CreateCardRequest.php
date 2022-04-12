@@ -72,13 +72,28 @@ class CreateCardRequest extends AbstractRequest
         }
 
         $orderId = $orderDecodedResponse['id'];
-        info('ORDER ID:'. $orderId);
+        info('ORDER ID:' . $orderId);
 
         $paymentKeyData = [
             'auth_token' => $authToken,
             //            'expiration' => 3600 //The expiration time of this payment token in seconds.
             'amount_cents' => $this->getAmount() * 100,
             'order_id' => $orderId,
+            'billing_data' => [
+                'apartment'=> 'NA',
+                'email'=> 'claudette09@exa.com',
+                'floor'=> 'NA',
+                'first_name'=> 'Clifford',
+                'street'=> 'NA',
+                'building'=> 'NA',
+                'phone_number'=> '+86(8)9135210487',
+                'shipping_method'=> 'PKG',
+                'postal_code'=> 'NA',
+                'city'=> 'NA',
+                'country'=> 'NA',
+                'last_name'=> 'Nicolas',
+                'state'=> 'NA',
+            ],
             'currency' => $this->getCurrency(),
             'integration_id' => $this->getPaymentIntegrationId(),
         ];
@@ -99,7 +114,7 @@ class CreateCardRequest extends AbstractRequest
 
         $paymentToken = $paymentKeyDecodedResponse['token'];
 
-        info('PAYMENT TOKEN:'. $paymentToken);
+        info('PAYMENT TOKEN:' . $paymentToken);
 
         return $this->createResponse(
             json_encode([

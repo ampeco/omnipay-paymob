@@ -71,11 +71,11 @@ class Gateway extends AbstractGateway
 
     public function acceptNotification(array $options = []): SaleNotification
     {
-        return new SaleNotification($options, $this->getServerKey());
+        return new SaleNotification($options);
     }
 
     public function acceptRedirectedBack(array $options = []): RedirectedBackNotification
     {
-        return new RedirectedBackNotification($options, $this->getServerKey());
+        return new RedirectedBackNotification($options);
     }
 }
