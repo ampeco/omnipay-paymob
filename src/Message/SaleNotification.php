@@ -41,4 +41,9 @@ class SaleNotification extends BaseNotification
     {
         return $this->data['obj']['masked_pan'];
     }
+
+    public function getCustomerEmail(): string
+    {
+        return $this->data['obj']['email'];
+    }
 }

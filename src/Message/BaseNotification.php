@@ -6,7 +6,7 @@ use Omnipay\Common\Message\NotificationInterface;
 
 class BaseNotification implements NotificationInterface
 {
-    const STATUS_SUCCESS = 200;
+    const STATUS_SUCCESS = 'true';
 
     protected $data;
 
@@ -15,9 +15,9 @@ class BaseNotification implements NotificationInterface
         $this->data = $data;
     }
 
-    public function getTransactionStatus(): int
+    public function getTransactionStatus()
     {
-//        return @$this->data['status_code'];
+        return @$this->data['success'];
     }
 
     public function getMessage()
@@ -32,12 +32,11 @@ class BaseNotification implements NotificationInterface
 
     public function getTransactionReference()
     {
-        return @$this->data['transaction_id'];
+        return @$this->data['obj']['order_id'];
     }
 
     public function isSuccessful(): bool
     {
-//        return $this->getTransactionStatus() === self::STATUS_SUCCESS;
-        return  true;
+        return $this->getTransactionStatus() === self::STATUS_SUCCESS;
     }
 }

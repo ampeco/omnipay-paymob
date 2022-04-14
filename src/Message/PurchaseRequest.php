@@ -21,22 +21,18 @@ class PurchaseRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('token', 'transactionId', 'amount');
+//        $this->validate('token', 'transactionId', 'amount');
 
         $params = [
-            'payment_type' => 'credit_card',
-            'transaction_details' => [
-                'order_id' => $this->getTransactionId(),
-                'gross_amount' => $this->getAmount(),
+            'source' => [
+                'identifier' => $this->getToken(),
+                'subtype' => 'TOKEN',
             ],
-            'credit_card' => [
-                'secure' => true,
-                'token_id' => $this->getToken(),
-            ],
+//            'payment_token' =>
         ];
 
         if ($this->getHold()) {
-            $params['credit_card']['type'] = 'authorize';
+            $params['integration_id'] = $this->getAuthIntegrationId();
         }
 
         return $params;

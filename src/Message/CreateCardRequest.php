@@ -10,35 +10,15 @@ class CreateCardRequest extends AbstractRequest
 
     public function getEndpoint()
     {
-        return 'transactions';
-    }
-
-    public function getHeaders(): array
-    {
-        return [
-            'X-Override-Notification' => $this->getNotifyUrl(),
-        ];
+        // TODO: Implement getEndpoint() method.
     }
 
     public function getData()
     {
         // $this->validate('transactionId', 'userId', 'amount', 'returnUrl', 'notifyUrl');
 
-        return [
-            'transaction_details' => [
-                'order_id' => $this->getTransactionId(),
-                'gross_amount' => $this->getAmount(),
-            ],
-            'credit_card' => [
-                'secure' => true,
-                'save_card' => true,
-            ],
-            'enabled_payments' => ['credit_card'],
-            // 'user_id' => $this->getUserId(),
-            'callbacks' => [
-                'finish' => $this->getReturnUrl(),
-            ],
-        ];
+        //TODO Use $data directly below and dont access information from this?!
+        return [];
     }
 
     public function sendData($data)
@@ -119,6 +99,7 @@ class CreateCardRequest extends AbstractRequest
         return $this->createResponse(
             json_encode([
                 'redirect_url' => $this->getRedirectUrl($paymentToken),
+                'order_id' => $orderId,
             ]),
             Response::HTTP_OK,
         );

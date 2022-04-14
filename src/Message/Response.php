@@ -41,7 +41,7 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
     public function getTransactionReference()
     {
         if ($this->isRedirect()) {
-            return @$this->data['token'];
+            return @$this->data['order_id'];
         } else {
             return @$this->data['transaction_id'];
         }
