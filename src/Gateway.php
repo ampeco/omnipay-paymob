@@ -22,7 +22,7 @@ class Gateway extends AbstractGateway
 {
     use CommonParameters;
 
-    const STATUS_SUCCESS = '00';
+    const STATUS_SUCCESS = 'APPROVED';
 
     public function getName()
     {

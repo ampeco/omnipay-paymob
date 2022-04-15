@@ -43,17 +43,17 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
         if ($this->isRedirect()) {
             return @$this->data['order_id'];
         } else {
-            return @$this->data['transaction_id'];
+            return @$this->data['order'];
         }
     }
 
     public function getCode()
     {
-        return @$this->data['channel_response_code'];
+        return @$this->data['txn_response_code'];
     }
 
     public function getMessage()
     {
-        return @$this->data['channel_response_message'];
+
     }
 }

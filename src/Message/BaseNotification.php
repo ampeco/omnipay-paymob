@@ -6,7 +6,7 @@ use Omnipay\Common\Message\NotificationInterface;
 
 class BaseNotification implements NotificationInterface
 {
-    const STATUS_SUCCESS = 'true';
+    const STATUS_SUCCESS = 'APPROVED';
 
     protected $data;
 
@@ -17,7 +17,7 @@ class BaseNotification implements NotificationInterface
 
     public function getTransactionStatus()
     {
-        return @$this->data['success'];
+        return @$this->data['txn_response_code'];
     }
 
     public function getMessage()

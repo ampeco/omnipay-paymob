@@ -13,8 +13,7 @@ class SaleNotification extends BaseNotification
 
     public function getCode(): ?string
     {
-        return null; //Should be user in other notification
-        //return $this->data['channel_response_code'];
+        return $this->data['txn_response_code'];
     }
 
     public function isForTokenization(): bool
