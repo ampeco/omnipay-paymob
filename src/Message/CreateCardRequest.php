@@ -34,6 +34,7 @@ class CreateCardRequest extends AbstractRequest
             json_encode([
                 'redirect_url' => $this->getRedirectUrl($paymentKey['token']),
                 'order_id' => $order['id'],
+                'success' => true,
             ]),
             Response::HTTP_OK,
         );

@@ -25,7 +25,7 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
 
     public function isSuccessful()
     {
-        return $this->statusCode < 400;
+        return $this->statusCode < 400 && $this->data['success'];
     }
 
     public function isRedirect()
