@@ -111,7 +111,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $orderDecodedResponse;
     }
 
-    public function createPaymentKey($authToken, $order)
+    public function createPaymentKey($authToken, $order, $isHeld = false)
     {
         $paymentKeyData = [
             'auth_token' => $authToken,
@@ -134,8 +134,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 'state'=> 'NA',
             ],
             'currency' => $this->getCurrency(),
-            'integration_id' => $this->getPaymentIntegrationId(),
+            'integration_id' => $isHeld ? $this->getAuthIntegrationId() : $this->getPaymentIntegrationId(),
         ];
+
+        info('AUTH ID INTEGRATION', [$paymentKeyData['integration_id']]);
 
         // 2. Get Payment Token
         $paymentKeyResponse = $this->httpClient->request(

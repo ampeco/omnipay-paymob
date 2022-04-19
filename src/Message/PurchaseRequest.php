@@ -32,7 +32,7 @@ class PurchaseRequest extends AbstractRequest
         $order = $this->createOrder($authToken);
         info('ORDER ID:' . $order['id']);
 
-        $paymentToken = $this->createPaymentKey($authToken, $order);
+        $paymentToken = $this->createPaymentKey($authToken, $order, $this->getHold());
         info('PAYMENT TOKEN:' . $paymentToken['token']);
 
         $paymentData = [
