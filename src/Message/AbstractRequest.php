@@ -80,8 +80,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             throw new \Exception($decodedResponse['detail']);
         }
 
-        info('TOKEN:' . $decodedResponse['token']);
-
         return $decodedResponse['token'];
     }
 
@@ -113,7 +111,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function createPaymentKey($authToken, $data)
     {
-        info('YOLO');
         $paymentKeyData = [
             'auth_token' => $authToken,
             'amount_cents' => (float) $data['amount'] * 100,
@@ -137,7 +134,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             'integration_id' => $this->getPaymentIntegrationId(),
         ];
 
-        // 2. Get Payment Token
         $paymentKeyResponse = $this->httpClient->request(
             $this->getHttpMethod(),
             $this->getBaseUrl() . '/acceptance/payment_keys',
