@@ -15,25 +15,25 @@ class CreateCardRequest extends AbstractRequest
 
     public function getData()
     {
-        // $this->validate('transactionId', 'userId', 'amount');
+        $this->validate('orderId', 'email', 'currency', 'amount');
 
-        //TODO Use $data directly below and dont access information from this?!
-        return [];
+        return [
+            'orderId' => $this->getOrderId(),
+            'email' => $this->getEmail(),
+            'currency' => $this->getCurrency(),
+            'amount' => $this->getAmount(),
+        ];
     }
 
     public function sendData($data)
     {
         $authToken = $this->getAuthToken();
-        $order = $this->createOrder($authToken);
-        info('ORDER ID:' . $order['id']);
-
-        $paymentKey = $this->createPaymentKey($authToken, $order);
-        info('PAYMENT TOKEN:' . $paymentKey['token']);
+        $paymentKey = $this->createPaymentKey($authToken, $data);
 
         return $this->createResponse(
             json_encode([
                 'redirect_url' => $this->getRedirectUrl($paymentKey['token']),
-                'order_id' => $order['id'],
+                'order_id' => $data['orderId'],
                 'success' => true,
             ]),
             Response::HTTP_OK,

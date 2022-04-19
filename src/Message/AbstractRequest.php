@@ -111,16 +111,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $orderDecodedResponse;
     }
 
-    public function createPaymentKey($authToken, $order)
+    public function createPaymentKey($authToken, $data)
     {
+        info('YOLO');
         $paymentKeyData = [
             'auth_token' => $authToken,
-            //            'expiration' => 3600 //The expiration time of this payment token in seconds.
-            'amount_cents' => $this->getAmount() * 100,
-            'order_id' => $order['id'],
+            'amount_cents' => (float) $data['amount'] * 100,
+            'order_id' => $data['orderId'],
             'billing_data' => [
                 'apartment'=> 'NA',
-                'email'=> $this->getEmail(),
+                'email'=> $data['email'],
                 'floor'=> 'NA',
                 'first_name'=> 'Clifford',
                 'street'=> 'NA',
@@ -133,7 +133,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 'last_name'=> 'Nicolas',
                 'state'=> 'NA',
             ],
-            'currency' => $this->getCurrency(),
+            'currency' => $data['currency'],
             'integration_id' => $this->getPaymentIntegrationId(),
         ];
 

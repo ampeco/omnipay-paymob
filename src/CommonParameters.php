@@ -53,4 +53,24 @@ trait CommonParameters
     {
         return $this->setParameter('cardIframeId', $value);
     }
+
+    public function setOrderId($value)
+    {
+        $this->setParameter('orderId', $value);
+    }
+
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    public function setMerchantOrderId($value)
+    {
+        $this->setParameter('merchantOrderId', $value);
+    }
+
+    public function getMerchantOrderId()
+    {
+        return $this->getParameter('merchantOrderId');
+    }
 }

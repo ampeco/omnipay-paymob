@@ -43,7 +43,7 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
         if ($this->isRedirect()) {
             return @$this->data['order_id'];
         } else {
-            return @$this->data['order'];
+            return @$this->data['id'];
         }
     }
 
@@ -55,5 +55,10 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
     public function getMessage()
     {
 
+    }
+
+    public function getOrderId()
+    {
+        return @$this->data['id'];
     }
 }
