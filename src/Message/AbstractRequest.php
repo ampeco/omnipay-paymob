@@ -37,11 +37,19 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         $headers = $this->getHeaders();
 
-        $data['auth_token'] = $this->getAuthToken();
+        $authToken = $this->getAuthToken();
+
+        $requestUrl = rtrim($this->getBaseUrl(), '/') . '/' . ltrim($this->getEndpoint(), '/');
+
+        if ($this->shouldAttachAuthTokenAsQueryParam()) {
+            $requestUrl .= '?token=' . $authToken;
+        } else {
+            $data['auth_token'] = $authToken;
+        }
 
         $httpResponse = $this->httpClient->request(
             $this->getHttpMethod(),
-            rtrim($this->getBaseUrl(), '/') . '/' . ltrim($this->getEndpoint(), '/'),
+            $requestUrl,
             $headers,
             json_encode($data),
         );
@@ -148,5 +156,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         }
 
         return $paymentKeyDecodedResponse;
+    }
+
+    public function shouldAttachAuthTokenAsQueryParam()
+    {
+        return false;
     }
 }
