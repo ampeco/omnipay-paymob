@@ -2,8 +2,6 @@
 
 namespace Ampeco\OmnipayPayMob\Message;
 
-use Symfony\Component\HttpFoundation\Response;
-
 class PurchaseRequest extends AbstractRequest
 {
     public function setHold($value)
@@ -16,34 +14,42 @@ class PurchaseRequest extends AbstractRequest
         return $this->getParameter('hold');
     }
 
+    public function setIdentifier($value)
+    {
+        $this->setParameter('identifier', $value);
+    }
+
+    public function getIdentifier()
+    {
+        return $this->getParameter('identifier');
+    }
+
+    public function setPaymentToken($value)
+    {
+        $this->setParameter('paymentToken', $value);
+    }
+
+    public function getPaymentToken()
+    {
+        return $this->getParameter('paymentToken');
+    }
+
     public function getEndpoint()
     {
-        // TODO: Implement getEndpoint() method.
+        return '/acceptance/payments/pay';
     }
 
     public function getData()
     {
-        // TODO: Implement getData() method.
-    }
+        $this->validate('identifier', 'paymentToken');
 
-    public function sendData($data)
-    {
-        $paymentData = [
+        return [
             'source' => [
-                'identifier' => $this->getToken(),
+                'identifier' => $this->getIdentifier(),
                 'subtype' => 'TOKEN',
             ],
-            'payment_token' => $paymentToken['token'],
+            'payment_token' => $this->getPaymentToken(),
         ];
-
-        $paymentResponse = $this->httpClient->request(
-            $this->getHttpMethod(),
-            $this->getBaseUrl() . '/acceptance/payments/pay',
-            $this->getHeaders(),
-            json_encode($paymentData),
-        );
-
-        return $this->createResponse($paymentResponse->getBody()->getContents(), Response::HTTP_OK);
     }
 
     protected function getResponseClass()

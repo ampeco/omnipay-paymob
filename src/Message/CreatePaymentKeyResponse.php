@@ -6,6 +6,11 @@ class CreatePaymentKeyResponse extends Response
 {
     public function isSuccessful()
     {
-        return $this->statusCode < 400 && $this->data['token'];
+        return $this->statusCode < 400 && @$this->data['token'];
+    }
+
+    public function getPaymentToken()
+    {
+        return @$this->data['token'];
     }
 }
