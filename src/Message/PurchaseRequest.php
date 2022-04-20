@@ -4,16 +4,6 @@ namespace Ampeco\OmnipayPayMob\Message;
 
 class PurchaseRequest extends AbstractRequest
 {
-    public function setHold($value)
-    {
-        $this->setParameter('hold', (bool) $value);
-    }
-
-    public function getHold()
-    {
-        return $this->getParameter('hold');
-    }
-
     public function setIdentifier($value)
     {
         $this->setParameter('identifier', $value);

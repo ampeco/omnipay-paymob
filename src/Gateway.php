@@ -54,7 +54,7 @@ class Gateway extends AbstractGateway
 
     public function authorize(array $options = []): AbstractRequest
     {
-        return $this->createRequest(PurchaseRequest::class, array_merge($options, ['hold' => true]));
+        return $this->createRequest(PurchaseRequest::class, $options);
     }
 
     public function capture(array $options = []): AbstractRequest
@@ -69,7 +69,7 @@ class Gateway extends AbstractGateway
 
     public function purchase(array $options = []): AbstractRequest
     {
-        return $this->createRequest(PurchaseRequest::class, array_merge($options, ['hold' => false]));
+        return $this->createRequest(PurchaseRequest::class, $options);
     }
 
     public function transactionInquiry(array $options = []): AbstractRequest

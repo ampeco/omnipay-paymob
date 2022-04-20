@@ -4,6 +4,16 @@ namespace Ampeco\OmnipayPayMob\Message;
 
 class CreatePaymentKeyRequest extends AbstractRequest
 {
+    public function setHold($value)
+    {
+        $this->setParameter('hold', (bool) $value);
+    }
+
+    public function getHold()
+    {
+        return $this->getParameter('hold');
+    }
+
     public function getEndpoint()
     {
         return '/acceptance/payment_keys';
@@ -11,7 +21,7 @@ class CreatePaymentKeyRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('amount', 'orderId', 'email', 'firstName', 'lastName', 'phone', 'currency');
+        $this->validate('amount', 'orderId', 'email', 'firstName', 'lastName', 'phone', 'currency', 'hold');
 
         return [
             'amount_cents' => $this->getAmount() * 100,
@@ -32,7 +42,7 @@ class CreatePaymentKeyRequest extends AbstractRequest
                 'state'=> 'NA',
             ],
             'currency' => $this->getCurrency(),
-            'integration_id' => $this->getPaymentIntegrationId(),
+            'integration_id' => $this->getHold() ? $this->getAuthIntegrationId() : $this->getPaymentIntegrationId(),
         ];
     }
 
