@@ -8,4 +8,9 @@ class CreateOrderResponse extends Response
     {
         return $this->statusCode < 400;
     }
+
+    public function getOrderId()
+    {
+        return @$this->data['id'];
+    }
 }

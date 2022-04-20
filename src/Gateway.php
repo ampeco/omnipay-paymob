@@ -6,7 +6,8 @@ use Ampeco\OmnipayPayMob\Message\AbstractRequest;
 use Ampeco\OmnipayPayMob\Message\CaptureRequest;
 use Ampeco\OmnipayPayMob\Message\CreateCardRequest;
 use Ampeco\OmnipayPayMob\Message\CreateOrderRequest;
-use Ampeco\OmnipayPayMob\Message\CreateTransactionInquiryRequest;
+use Ampeco\OmnipayPayMob\Message\CreatePaymentKeyRequest;
+use Ampeco\OmnipayPayMob\Message\TransactionInquiryRequest;
 use Ampeco\OmnipayPayMob\Message\PurchaseRequest;
 use Ampeco\OmnipayPayMob\Message\RedirectedBackNotification;
 use Ampeco\OmnipayPayMob\Message\SaleNotification;
@@ -73,7 +74,12 @@ class Gateway extends AbstractGateway
 
     public function transactionInquiry(array $options = []): AbstractRequest
     {
-        return $this->createRequest(CreateTransactionInquiryRequest::class, $options);
+        return $this->createRequest(TransactionInquiryRequest::class, $options);
+    }
+
+    public function paymentKey(array $options = []): AbstractRequest
+    {
+        return $this->createRequest(CreatePaymentKeyRequest::class, $options);
     }
 
     public function deleteCard(array $options = []): AbstractRequest

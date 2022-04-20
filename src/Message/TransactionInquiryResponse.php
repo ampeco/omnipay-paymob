@@ -2,7 +2,7 @@
 
 namespace Ampeco\OmnipayPayMob\Message;
 
-class CreateTransactionInquiryResponse extends Response
+class TransactionInquiryResponse extends Response
 {
     public function isSuccessful()
     {

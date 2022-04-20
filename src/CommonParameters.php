@@ -73,4 +73,34 @@ trait CommonParameters
     {
         return $this->getParameter('merchantOrderId');
     }
+
+    public function setPhone($value)
+    {
+        $this->setParameter('phone', $value);
+    }
+
+    public function getPhone()
+    {
+        return $this->getParameter('phone');
+    }
+
+    public function setFirstName($value)
+    {
+        $this->setParameter('firstName', $value);
+    }
+
+    public function getFirstName()
+    {
+        return $this->getParameter('firstName');
+    }
+
+    public function setLastName($value)
+    {
+        $this->setParameter('lastName', $value);
+    }
+
+    public function getLastName()
+    {
+        return $this->getParameter('lastName');
+    }
 }

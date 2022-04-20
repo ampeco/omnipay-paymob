@@ -28,13 +28,6 @@ class PurchaseRequest extends AbstractRequest
 
     public function sendData($data)
     {
-        $authToken = $this->getAuthToken();
-        $order = $this->createOrder($authToken);
-        info('ORDER ID:' . $order['id']);
-
-        $paymentToken = $this->createPaymentKey($authToken, $order, $this->getHold());
-        info('PAYMENT TOKEN:' . $paymentToken['token']);
-
         $paymentData = [
             'source' => [
                 'identifier' => $this->getToken(),

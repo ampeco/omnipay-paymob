@@ -2,7 +2,7 @@
 
 namespace Ampeco\OmnipayPayMob\Message;
 
-class CreateTransactionInquiryRequest extends AbstractRequest
+class TransactionInquiryRequest extends AbstractRequest
 {
     public function getEndpoint()
     {
@@ -19,6 +19,6 @@ class CreateTransactionInquiryRequest extends AbstractRequest
 
     public function getResponse()
     {
-        return CreateTransactionInquiryResponse::class;
+        return TransactionInquiryResponse::class;
     }
 }
