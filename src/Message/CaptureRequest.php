@@ -6,7 +6,7 @@ class CaptureRequest extends AbstractRequest
 {
     public function getEndpoint()
     {
-        return 'capture';
+        return '/acceptance/capture';
     }
 
     public function getData()
@@ -15,7 +15,7 @@ class CaptureRequest extends AbstractRequest
 
         return [
             'transaction_id' => $this->getTransactionReference(),
-            'gross_amount' => $this->getAmount(),
+            'amount_cents' => $this->getAmount() * 100,
         ];
     }
 }
