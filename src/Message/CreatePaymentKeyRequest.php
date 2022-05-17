@@ -42,7 +42,7 @@ class CreatePaymentKeyRequest extends AbstractRequest
                 'state'=> 'NA',
             ],
             'currency' => $this->getCurrency(),
-            'integration_id' => $this->getHold() ? $this->getAuthIntegrationId() : $this->getPaymentIntegrationId(),
+            'integration_id' => $this->getHold() ? $this->getAuthIntegrationId() : $this->getMotoIntegrationId(),
         ];
     }
 

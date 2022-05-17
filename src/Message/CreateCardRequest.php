@@ -22,6 +22,9 @@ class CreateCardRequest extends AbstractRequest
             'email' => $this->getEmail(),
             'currency' => $this->getCurrency(),
             'amount' => $this->getAmount(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'phone' => $this->getPhone(),
         ];
     }
 

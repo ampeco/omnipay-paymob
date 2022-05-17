@@ -24,14 +24,24 @@ trait CommonParameters
         return $this->setParameter('apiKey', $value);
     }
 
-    public function getPaymentIntegrationId()
+    public function getOnlineIntegrationId()
     {
-        return $this->getParameter('paymentIntegrationId');
+        return $this->getParameter('onlineIntegrationId');
     }
 
-    public function setPaymentIntegrationId($value)
+    public function setOnlineIntegrationId($value)
     {
-        return $this->setParameter('paymentIntegrationId', $value);
+        return $this->setParameter('onlineIntegrationId', $value);
+    }
+
+    public function getMotoIntegrationId()
+    {
+        return $this->getParameter('motoIntegrationId');
+    }
+
+    public function setMotoIntegrationId($value)
+    {
+        return $this->setParameter('motoIntegrationId', $value);
     }
 
     public function getAuthIntegrationId()
