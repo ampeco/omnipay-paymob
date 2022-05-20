@@ -10,7 +10,7 @@ use Ampeco\OmnipayPayMob\Message\CreatePaymentKeyRequest;
 use Ampeco\OmnipayPayMob\Message\TransactionInquiryRequest;
 use Ampeco\OmnipayPayMob\Message\PurchaseRequest;
 use Ampeco\OmnipayPayMob\Message\RedirectedBackNotification;
-use Ampeco\OmnipayPayMob\Message\SaleNotification;
+use Ampeco\OmnipayPayMob\Message\TransactionNotification;
 use Ampeco\OmnipayPayMob\Message\VoidRequest;
 use Omnipay\Common\AbstractGateway;
 
@@ -87,9 +87,9 @@ class Gateway extends AbstractGateway
         throw new \Exception('Delete card is not supported by the payment provider');
     }
 
-    public function acceptNotification(array $options = []): SaleNotification
+    public function acceptNotification(array $options = []): TransactionNotification
     {
-        return new SaleNotification($options);
+        return new TransactionNotification($options);
     }
 
     public function acceptRedirectedBack(array $options = []): RedirectedBackNotification

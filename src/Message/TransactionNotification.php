@@ -4,7 +4,7 @@ namespace Ampeco\OmnipayPayMob\Message;
 
 use Ampeco\OmnipayPayMob\Gateway;
 
-class SaleNotification extends BaseNotification
+class TransactionNotification extends BaseNotification
 {
     public function isSuccessful(): bool
     {
