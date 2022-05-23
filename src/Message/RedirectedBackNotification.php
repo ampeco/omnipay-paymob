@@ -8,4 +8,9 @@ class RedirectedBackNotification extends BaseNotification
     {
         return @$this->data['id'];
     }
+
+    public function getMessage()
+    {
+        return @$this->data['data_message'];
+    }
 }

@@ -22,7 +22,7 @@ class BaseNotification implements NotificationInterface
 
     public function getMessage()
     {
-//        return $this->getTransactionStatus();
+        return @$this->data['obj']['data']['message'];
     }
 
     public function getData()
