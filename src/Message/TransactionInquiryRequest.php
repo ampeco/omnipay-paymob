@@ -16,9 +16,4 @@ class TransactionInquiryRequest extends AbstractRequest
             'order_id' => $this->getOrderId(),
         ];
     }
-
-    public function getResponse()
-    {
-        return TransactionInquiryResponse::class;
-    }
 }

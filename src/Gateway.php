@@ -77,6 +77,11 @@ class Gateway extends AbstractGateway
         return $this->createRequest(TransactionInquiryRequest::class, $options);
     }
 
+    public function getTransaction(array $options = []): AbstractRequest
+    {
+        return $this->createRequest(GetTransactionRequest::class, $options);
+    }
+
     public function paymentKey(array $options = []): AbstractRequest
     {
         return $this->createRequest(CreatePaymentKeyRequest::class, $options);
