@@ -6,6 +6,16 @@ use Omnipay\Common\Exception\InvalidRequestException;
 
 class CreatePaymentKeyRequest extends AbstractRequest
 {
+    public function getIntegrationId()
+    {
+        return $this->getParameter('integrationId');
+    }
+
+    public function setIntegrationId($value)
+    {
+        return $this->setParameter('integrationId', $value);
+    }
+
     public function getEndpoint()
     {
         return '/acceptance/payment_keys';
@@ -15,7 +25,7 @@ class CreatePaymentKeyRequest extends AbstractRequest
     {
         $this->validate('amount', 'orderId', 'email', 'firstName', 'lastName', 'phone', 'currency');
 
-        $integrationId = $this->getParameter('integrationId');
+        $integrationId = $this->getIntegrationId();
 
         if (!$integrationId) {
             throw new InvalidRequestException('The integrationId parameter is required');
