@@ -50,7 +50,9 @@ class Gateway extends AbstractGateway
 
     public function createCard(array $options = []): AbstractRequest
     {
-        return $this->createRequest(CreateCardRequest::class, $options);
+        return $this->createRequest(CreatePaymentKeyRequest::class, array_merge($options, [
+            'integrationId' => $this->getOnlineIntegrationId(),
+        ]));
     }
 
     public function authorize(array $options = []): AbstractRequest
@@ -83,9 +85,18 @@ class Gateway extends AbstractGateway
         return $this->createRequest(GetTransactionRequest::class, $options);
     }
 
-    public function paymentKey(array $options = []): AbstractRequest
+    public function createPaymentKeyForNextPayments(array $options = []): AbstractRequest
     {
-        return $this->createRequest(CreatePaymentKeyRequest::class, $options);
+        return $this->createRequest(CreatePaymentKeyRequest::class, array_merge($options, [
+            'integrationId' => $this->getMotoIntegrationId(),
+        ]));
+    }
+
+    public function createPaymentKeyForPreAuthorization(array $options = []): AbstractRequest
+    {
+        return $this->createRequest(CreatePaymentKeyRequest::class, array_merge($options, [
+            'integrationId' => $this->getAuthIntegrationId(),
+        ]));
     }
 
     public function deleteCard(array $options = []): AbstractRequest

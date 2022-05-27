@@ -51,9 +51,4 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
     {
         return @$this->data['txn_response_code'];
     }
-
-    public function isNotFound()
-    {
-        return $this->statusCode === 404;
-    }
 }
