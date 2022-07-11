@@ -6,6 +6,6 @@ class PurchaseResponse extends Response
 {
     public function isPending()
     {
-        return $this->data['pending'];
+        return $this->data['pending'] === 'true';
     }
 }
