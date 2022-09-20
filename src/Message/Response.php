@@ -30,7 +30,12 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
 
     public function isPending()
     {
-        return $this->data['pending'] === 'true' || $this->data['pending'] === true;
+        return $this->statusCode < 400 && $this->data['pending'] === 'true' || $this->data['pending'] === true;
+    }
+
+    public function isNotFound()
+    {
+        return $this->statusCode === 404;
     }
 
     public function isRedirect()
