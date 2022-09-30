@@ -25,12 +25,12 @@ class Response extends AbstractResponse implements ResponseInterface, RedirectRe
 
     public function isSuccessful()
     {
-        return $this->statusCode < 400 && ($this->data['success'] === 'true' || $this->data['success'] === true);
+        return isset($this->data['success']) && ($this->data['success'] === 'true' || $this->data['success'] === true);
     }
 
     public function isPending()
     {
-        return $this->statusCode < 400 && $this->data['pending'] === 'true' || $this->data['pending'] === true;
+        return isset($this->data['pending']) && ($this->data['pending'] === 'true' || $this->data['pending'] === true);
     }
 
     public function isNotFound()
