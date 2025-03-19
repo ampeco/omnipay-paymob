@@ -15,7 +15,7 @@ class CaptureRequest extends AbstractRequest
 
         return [
             'transaction_id' => $this->getTransactionReference(),
-            'amount_cents' => $this->getAmount() * 100,
+            'amount_cents' => $this->getAmountInteger(),
         ];
     }
 }

@@ -12,7 +12,7 @@ class CreateOrderRequest extends AbstractRequest
     public function getData()
     {
         return [
-            'amount_cents' => $this->getAmount() * 100,
+            'amount_cents' => $this->getAmountInteger(),
             'currency' => $this->getCurrency(),
             'merchant_order_id' => $this->getTransactionId(),
         ];

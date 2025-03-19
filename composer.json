@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ampeco\\OmnipayPayMob\\": "src/"
+            "Ampeco\\OmnipayPayMob\\": "src/",
+            "Ampeco\\OmnipayPayMob\\Tests\\": "tests/"
         }
     },
     "authors": [
